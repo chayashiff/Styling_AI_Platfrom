@@ -1,0 +1,254 @@
+{
+  "Products": [
+  {
+    "product_id": "p_001",
+    "name": "Oversized cotton tee",
+    "category": "tops",
+    "colors": ["white", "black", "grey"],
+    "style_tags": ["casual", "minimalist", "basic"],
+    "occasions": ["work_from_home", "weekend", "errands"],
+    "price": 89,
+    "description": "Soft cotton oversized t-shirt with relaxed fit"
+  },
+  {
+    "product_id": "p_002",
+    "name": "Silk button-down blouse",
+    "category": "tops",
+    "colors": ["cream", "black", "navy"],
+    "style_tags": ["classic", "elegant", "office"],
+    "occasions": ["office", "dinner", "meeting"],
+    "price": 280,
+    "description": "Classic silk blouse with pearl buttons"
+  },
+  {
+    "product_id": "p_003",
+    "name": "Cropped wool sweater",
+    "category": "tops",
+    "colors": ["beige", "black", "burgundy"],
+    "style_tags": ["minimalist", "trendy", "warm"],
+    "occasions": ["weekend", "date", "casual_office"],
+    "price": 220,
+    "description": "Soft merino wool cropped sweater"
+  },
+  {
+    "product_id": "p_004",
+    "name": "Neon graphic tee",
+    "category": "tops",
+    "colors": ["neon_yellow", "neon_pink"],
+    "style_tags": ["streetwear", "bold", "trendy"],
+    "occasions": ["weekend", "party", "concert"],
+    "price": 65,
+    "description": "Bold neon graphic print t-shirt"
+  },
+  {
+    "product_id": "p_005",
+    "name": "Linen wrap top",
+    "category": "tops",
+    "colors": ["white", "beige", "olive"],
+    "style_tags": ["bohemian", "summer", "minimalist"],
+    "occasions": ["vacation", "brunch", "weekend"],
+    "price": 145,
+    "description": "Lightweight linen wrap top with tie waist"
+  },
+  {
+    "product_id": "p_006",
+    "name": "High-waist straight jeans",
+    "category": "bottoms",
+    "colors": ["blue", "black", "white"],
+    "style_tags": ["classic", "casual", "minimalist"],
+    "occasions": ["weekend", "casual_office", "errands", "work_from_home"],
+    "price": 180,
+    "description": "High-waist straight leg jeans in organic cotton"
+  },
+  {
+    "product_id": "p_007",
+    "name": "Tailored wool trousers",
+    "category": "bottoms",
+    "colors": ["black", "navy", "grey"],
+    "style_tags": ["classic", "elegant", "office"],
+    "occasions": ["office", "meeting", "dinner"],
+    "price": 240,
+    "description": "Tailored wide-leg wool trousers"
+  },
+  {
+    "product_id": "p_008",
+    "name": "Pleated midi skirt",
+    "category": "bottoms",
+    "colors": ["beige", "black", "olive"],
+    "style_tags": ["feminine", "classic", "office"],
+    "occasions": ["office", "brunch", "date"],
+    "price": 195,
+    "description": "Pleated midi skirt in flowing fabric"
+  },
+  {
+    "product_id": "p_009",
+    "name": "Cargo wide-leg pants",
+    "category": "bottoms",
+    "colors": ["olive", "black", "beige"],
+    "style_tags": ["streetwear", "trendy", "utility"],
+    "occasions": ["weekend", "errands", "casual_office"],
+    "price": 165,
+    "description": "Wide-leg cargo pants with utility pockets"
+  },
+  {
+    "product_id": "p_010",
+    "name": "Cotton lounge shorts",
+    "category": "bottoms",
+    "colors": ["grey", "black", "white"],
+    "style_tags": ["casual", "comfort", "basic"],
+    "occasions": ["work_from_home", "weekend", "errands"],
+    "price": 75,
+    "description": "Soft cotton shorts with elastic waistband"
+  },
+  {
+    "product_id": "p_011",
+    "name": "Slip midi dress",
+    "category": "dresses",
+    "colors": ["black", "champagne", "navy"],
+    "style_tags": ["elegant", "minimalist", "evening"],
+    "occasions": ["dinner", "date", "event"],
+    "price": 260,
+    "description": "Bias-cut satin slip dress"
+  },
+  {
+    "product_id": "p_012",
+    "name": "Floral wrap dress",
+    "category": "dresses",
+    "colors": ["pink", "blue", "green"],
+    "style_tags": ["feminine", "bohemian", "summer"],
+    "occasions": ["brunch", "vacation", "wedding_guest"],
+    "price": 210,
+    "description": "Floral print wrap dress with tie waist"
+  },
+  {
+    "product_id": "p_013",
+    "name": "Knit sweater dress",
+    "category": "dresses",
+    "colors": ["beige", "black", "cream"],
+    "style_tags": ["minimalist", "warm", "casual"],
+    "occasions": ["weekend", "casual_office", "date"],
+    "price": 175,
+    "description": "Ribbed knit sweater dress"
+  },
+  {
+    "product_id": "p_014",
+    "name": "White leather sneakers",
+    "category": "shoes",
+    "colors": ["white"],
+    "style_tags": ["minimalist", "classic", "casual"],
+    "occasions": ["weekend", "errands", "casual_office", "work_from_home"],
+    "price": 230,
+    "description": "Clean white leather low-top sneakers"
+  },
+  {
+    "product_id": "p_015",
+    "name": "Block heel ankle boots",
+    "category": "shoes",
+    "colors": ["black", "brown"],
+    "style_tags": ["classic", "elegant", "office"],
+    "occasions": ["office", "dinner", "date"],
+    "price": 290,
+    "description": "Leather ankle boots with comfortable block heel"
+  },
+  {
+    "product_id": "p_016",
+    "name": "Strappy sandals",
+    "category": "shoes",
+    "colors": ["beige", "black", "gold"],
+    "style_tags": ["elegant", "summer", "feminine"],
+    "occasions": ["dinner", "event", "vacation"],
+    "price": 195,
+    "description": "Delicate strappy heeled sandals"
+  },
+  {
+    "product_id": "p_017",
+    "name": "Chunky platform sneakers",
+    "category": "shoes",
+    "colors": ["white", "black", "neon_green"],
+    "style_tags": ["streetwear", "trendy", "bold"],
+    "occasions": ["weekend", "concert", "party"],
+    "price": 250,
+    "description": "Chunky platform sneakers with bold sole"
+  },
+  {
+    "product_id": "p_018",
+    "name": "Slip-on loafers",
+    "category": "shoes",
+    "colors": ["black", "brown", "beige"],
+    "style_tags": ["classic", "minimalist", "office"],
+    "occasions": ["office", "casual_office", "errands"],
+    "price": 215,
+    "description": "Classic leather penny loafers"
+  },
+  {
+    "product_id": "p_019",
+    "name": "Oversized blazer",
+    "category": "outerwear",
+    "colors": ["black", "beige", "grey"],
+    "style_tags": ["classic", "trendy", "office"],
+    "occasions": ["office", "meeting", "dinner", "casual_office"],
+    "price": 320,
+    "description": "Oversized single-breasted blazer"
+  },
+  {
+    "product_id": "p_020",
+    "name": "Wool trench coat",
+    "category": "outerwear",
+    "colors": ["beige", "black", "navy"],
+    "style_tags": ["classic", "elegant", "timeless"],
+    "occasions": ["office", "weekend", "date"],
+    "price": 480,
+    "description": "Classic double-breasted trench coat in wool blend"
+  },
+  {
+    "product_id": "p_021",
+    "name": "Cropped denim jacket",
+    "category": "outerwear",
+    "colors": ["blue", "white", "black"],
+    "style_tags": ["casual", "classic", "weekend"],
+    "occasions": ["weekend", "errands", "brunch"],
+    "price": 160,
+    "description": "Cropped denim jacket with vintage wash"
+  },
+  {
+    "product_id": "p_022",
+    "name": "Leather crossbody bag",
+    "category": "accessories",
+    "colors": ["black", "brown", "beige"],
+    "style_tags": ["classic", "minimalist", "everyday"],
+    "occasions": ["office", "weekend", "errands", "dinner"],
+    "price": 285,
+    "description": "Small leather crossbody bag with adjustable strap"
+  },
+  {
+    "product_id": "p_023",
+    "name": "Statement gold earrings",
+    "category": "accessories",
+    "colors": ["gold"],
+    "style_tags": ["bold", "elegant", "trendy"],
+    "occasions": ["dinner", "event", "date"],
+    "price": 95,
+    "description": "Bold sculptural gold-plated earrings"
+  },
+  {
+    "product_id": "p_024",
+    "name": "Silk hair scarf",
+    "category": "accessories",
+    "colors": ["multicolor", "black", "cream"],
+    "style_tags": ["feminine", "vintage", "bohemian"],
+    "occasions": ["weekend", "brunch", "vacation"],
+    "price": 55,
+    "description": "Printed silk hair scarf, versatile styling"
+  },
+  {
+    "product_id": "p_025",
+    "name": "Minimalist leather belt",
+    "category": "accessories",
+    "colors": ["black", "brown", "beige"],
+    "style_tags": ["minimalist", "classic", "basic"],
+    "occasions": ["office", "casual_office", "weekend"],
+    "price": 110,
+    "description": "Slim leather belt with simple metal buckle"
+  }
+  ]
+}
