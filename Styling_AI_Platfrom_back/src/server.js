@@ -1,54 +1,30 @@
+// מאפשר לשרת לקבל בקשות מה-frontend גם אם הוא רץ על כתובת אחרת.
 import cors from "cors";
+// Express משמש לבניית ה-API של שירות ההמלצות.
 import express from "express";
-import { readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
 
-import { getRecommendations } from "./services/aiRecommendationService.js";
-import { filterProducts } from "./services/filterService.js";
+// הקונטרולר מרכז את כל הלוגיקה של בקשת ההמלצות.
+import { getRecommendationController } from "./controllers/recommendationController.js";
 
+// יוצר את אפליקציית Express שעליה נגדיר routes.
 const app = express();
+// הפורט שעליו השרת יאזין בזמן פיתוח.
 const PORT = 3000;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const productsFilePath = join(__dirname, "data", "products.json");
 
+// מאפשר בקשות cross-origin מה-frontend.
 app.use(cors());
+// מאפשר לשרת לקרוא JSON מתוך גוף הבקשה.
 app.use(express.json());
 
-async function loadProducts() {
-  const fileContent = await readFile(productsFilePath, "utf8");
-  const productsData = JSON.parse(fileContent);
-
-  return productsData.Products;
-}
-
+// endpoint פשוט לבדיקת חיים של השרת.
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-app.post("/recommendations", async (req, res) => {
-  try {
-    const userProfile = req.body;
-    const products = await loadProducts();
-    const filterResult = filterProducts(userProfile, products);
-    const recommendationResult = await getRecommendations(
-      userProfile,
-      filterResult.products,
-    );
+// endpoint ראשי שמקבל פרופיל משתמש ומחזיר המלצות מותאמות.
+app.post("/recommendations", getRecommendationController);
 
-    res.json({
-      source: recommendationResult.source,
-      message: filterResult.message,
-      recommendations: recommendationResult.recommendations,
-    });
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
-    });
-  }
-});
-
+// מפעיל את השרת ומדפיס הודעה כדי שנדע שהוא עלה.
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
