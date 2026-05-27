@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "a9cae780-67d8-4080-85ef-75ee1f593c14",
+		"name": "BuyTheLook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45750168",
+		"_collection_link": "https://ch4141680gmailcomsteam.postman.co/workspace/Team-Workspace~40211020-714c-4eab-834f-710b04397caa/collection/45750168-a9cae780-67d8-4080-85ef-75ee1f593c14?action=share&source=collection_link&creator=45750168"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"user_id\": \"u_113\",\r\n  \"age\": 32,\r\n  \"style_preferences\": [\"casual\", \"minimalist\"],\r\n  \"favorite_colors\": [\"yellow\", \"green\", \"white\"],\r\n  \"avoid_colors\": [\"neon_blue\", \"neon_pink\"],\r\n  \"occasion\": \"event\",\r\n  \"budget_max\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/recommendations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recommendations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

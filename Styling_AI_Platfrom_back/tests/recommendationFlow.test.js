@@ -1,20 +1,13 @@
-// assert משמש לבדיקות מדויקות של תוצאות הסינון וההמלצות.
 import assert from "node:assert/strict";
-// קורא את קובץ המוצרים האמיתי כדי לבדוק את הזרימה על נתונים קיימים.
 import { readFile } from "node:fs/promises";
-// מנגנון הבדיקות המובנה של Node.js.
 import test from "node:test";
-// פונקציות ה-AI נבדקות כאן בלי לבצע קריאה אמיתית ל-Groq.
 import {
   buildRecommendationPrompt,
   getExpectedRecommendationsCount,
   validateRecommendationsResponse,
 } from "../src/services/aiRecommendationService.js";
-// הקונטרולר נבדק כדי לוודא שהנתיב החדש לטעינת המוצרים עובד אחרי הריפקטור.
 import { loadProducts as loadControllerProducts } from "../src/controllers/recommendationController.js";
-// שירות הסינון נבדק כדי לוודא שהמוצרים שנשלחים להמלצה עומדים בחוקים.
 import { filterProducts } from "../src/services/filterService.js";
-// שירות הגיבוי נבדק כדי לוודא שיש המלצות גם כש-Groq לא זמין.
 import { rankWithFallback } from "../src/services/fallbackRecommendationService.js";
 
 // טוען את מוצרי הבדיקה מתוך קובץ הנתונים של הפרויקט.
@@ -39,7 +32,6 @@ function buildUserProfile(overrides = {}) {
   };
 }
 
-// בודק שה-controller מצליח לטעון את מאגר המוצרים מהנתיב החדש שלו.
 test("controller loads products from the data file", async () => {
   const products = await loadControllerProducts();
 
@@ -47,7 +39,6 @@ test("controller loads products from the data file", async () => {
   assert.ok(products.length > 0);
 });
 
-// בודק את הזרימה הבסיסית: סינון מוצרים, דירוג fallback והוספת הסברים.
 test("filters products, ranks up to 5 recommendations, and adds reasons", async () => {
   const products = await loadTestProducts();
   const userProfile = buildUserProfile();
@@ -59,7 +50,6 @@ test("filters products, ranks up to 5 recommendations, and adds reasons", async 
   assert.ok(recommendations.every((product) => typeof product.reason === "string"));
 });
 
-// בודק שמנגנון הגיבוי לא מחזיר כמה וריאציות של אותו פריט.
 test("skips duplicate fallback recommendations by product name and category", () => {
   const userProfile = buildUserProfile();
   const products = [
@@ -102,7 +92,6 @@ test("skips duplicate fallback recommendations by product name and category", ()
   );
 });
 
-// בודק שכאשר נשארים פחות מ-5 מוצרים, Groq מתבקש להחזיר בדיוק את הכמות הקיימת.
 test("asks Groq for the available product count when fewer than 5 products remain", () => {
   const userProfile = buildUserProfile();
   const products = [
@@ -163,7 +152,28 @@ test("asks Groq for the available product count when fewer than 5 products remai
   assert.equal(getExpectedRecommendationsCount(new Array(6).fill({})), 5);
 });
 
-// בודק שתקציב נמוך מדי עוצר את הזרימה עם שגיאה ברורה.
+test("asks Groq for positive and flattering recommendation reasons", () => {
+  const userProfile = buildUserProfile();
+  const products = [
+    {
+      product_id: "p_001",
+      name: "Soft Knit Cardigan",
+      category: "tops",
+      colors: ["black"],
+      style_tags: ["casual"],
+      occasions: ["work_from_home"],
+      price: 80,
+      description: "Comfortable cardigan",
+    },
+  ];
+  const prompt = buildRecommendationPrompt(userProfile, products, 1);
+
+  assert.match(prompt, /positive, flattering, and stylist-like/);
+  assert.match(prompt, /Do NOT mention missing matches/);
+  assert.match(prompt, /although/);
+  assert.match(prompt, /doesn't match/);
+});
+
 test("throws when no products are within budget", async () => {
   const products = await loadTestProducts();
   const userProfile = buildUserProfile({ budget_max: 1 });
@@ -174,7 +184,6 @@ test("throws when no products are within budget", async () => {
   );
 });
 
-// בודק שמוצרים עם צבעים שהמשתמש ביקש להימנע מהם לא עוברים את הסינון.
 test("removes products that include avoided colors", async () => {
   const products = await loadTestProducts();
   const userProfile = buildUserProfile({

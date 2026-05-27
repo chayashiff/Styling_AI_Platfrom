@@ -1,13 +1,8 @@
-// טוען משתני סביבה כדי שנוכל לקרוא את מפתח ה-API של Groq מתוך קובץ .env.
 import "dotenv/config";
-// מאפשר לשלוח בקשות למודל Groq שמייצר את ההמלצות החכמות.
 import Groq from "groq-sdk";
-// משמש כגיבוי מקומי אם Groq לא זמין או מחזיר תשובה לא תקינה.
 import { rankWithFallback } from "./fallbackRecommendationService.js";
 
-// קובע באיזה מודל Groq נשתמש ליצירת ההמלצות.
 const GROQ_MODEL = "llama-3.3-70b-versatile";
-// מגדיר תקרה לכמות ההמלצות כדי לשמור על תשובה ממוקדת למשתמש.
 const MAX_RECOMMENDATIONS_COUNT = 5;
 
 // הופך מערך לטקסט קריא בפרומפט, כדי שה-AI יקבל העדפות בצורה ברורה.
@@ -61,6 +56,12 @@ IMPORTANT RULES:
   ${userProfile.budget_max}
 - For each product write exactly one sentence explaining why it 
   suits this specific user based on their style, colors, and occasion
+- The reason MUST be positive, flattering, and stylist-like. Focus only on what
+  works well for the user, such as style, color, occasion, comfort, flattering
+  fit, and how polished or put-together the item can look.
+- Do NOT mention missing matches, weaknesses, tradeoffs, comparisons, or negative
+  phrases such as "although", "but", "doesn't match", "not perfect", or
+  "relatively low price".
 
 PRODUCTS LIST:
 ${JSON.stringify(filteredProducts, null, 2)}
@@ -80,7 +81,7 @@ The JSON must follow this exact structure:
       "occasions": ["occasion1"],
       "price": 89,
       "description": "original product description",
-      "reason": "one sentence explaining why this suits the user"
+      "reason": "one positive and flattering sentence explaining why this suits the user"
     }
   ]
 }`;
@@ -111,11 +112,9 @@ function validateRecommendationsResponse(
     return false;
   }
 
-  // בונה סט מזהים חוקיים כדי לוודא שה-AI לא המציא מוצרים שלא קיימים.
   const validProductIds = new Set(
     filteredProducts.map((product) => product.product_id),
   );
-  // מונע החזרת אותו product_id יותר מפעם אחת בתשובת Groq.
   const selectedProductIds = new Set();
 
   return parsedResponse.recommendations.every((recommendation) => {
@@ -195,7 +194,6 @@ async function getGroqRecommendations(userProfile, filteredProducts) {
 // מחזיר המלצות מ-Groq אם אפשר, ואם יש בעיה עובר אוטומטית לגיבוי המקומי.
 async function getRecommendations(userProfile, filteredProducts) {
   try {
-    // בלי מפתח API אין טעם לפנות ל-Groq, ולכן נעבור ישר ל-fallback.
     if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY.trim() === "") {
       throw new Error("GROQ_API_KEY is missing");
     }

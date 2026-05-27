@@ -54,7 +54,6 @@ function validateUserProfile(userProfile) {
     throw new Error("userProfile must be an object");
   }
 
-  // שדות בסיסיים חייבים להיות תקינים כדי שהסינון וההמלצות לא יעבדו על מידע חסר.
   assertString(userProfile.user_id, "user_id", "Invalid userProfile");
   assertNonNegativeNumber(userProfile.age, "age", "Invalid userProfile");
   assertPositiveNumber(userProfile.budget_max, "budget_max", "Invalid userProfile");
@@ -74,7 +73,6 @@ function validateUserProfile(userProfile) {
     "Invalid userProfile",
   );
 
-  // occasion הוא אופציונלי, אבל אם נשלח הוא חייב להיות טקסט אמיתי.
   if (
     userProfile.occasion !== undefined &&
     (typeof userProfile.occasion !== "string" ||
@@ -92,7 +90,6 @@ function validateProducts(products) {
     throw new Error("products must be a non-empty array");
   }
 
-  // עוברים מוצר מוצר כדי לתת שגיאה מדויקת אם מוצר אחד לא תקין.
   products.forEach((product, index) => {
     const context = getProductContext(product, index);
 
@@ -127,7 +124,6 @@ function filterByBudget(products, budgetMax) {
 
 // מסיר מוצרים שמכילים צבעים שהמשתמש ביקש להימנע מהם.
 function filterByAvoidedColors(products, avoidColors = []) {
-  // Set מאפשר בדיקת צבעים מהירה ונקייה בזמן מעבר על מוצרי המאגר.
   const avoidedColorsSet = new Set(avoidColors);
   const filtered = products.filter(
     (product) => !product.colors.some((color) => avoidedColorsSet.has(color)),
@@ -144,7 +140,6 @@ function filterByAvoidedColors(products, avoidColors = []) {
 
 // אם המשתמש בחר אירוע, משאיר רק מוצרים שמתאימים לאותו שימוש.
 function filterByOccasion(products, occasion) {
-  // אם אין אירוע, אין צורך לצמצם את הרשימה לפי occasion.
   if (!occasion) {
     return products;
   }
@@ -167,7 +162,6 @@ function filterProducts(userProfile, products) {
   validateUserProfile(userProfile);
   validateProducts(products);
 
-  // סדר הסינון חשוב: קודם תקציב, אחר כך צבעים אסורים, ובסוף התאמה לאירוע.
   let filteredProducts = filterByBudget(products, userProfile.budget_max);
   filteredProducts = filterByAvoidedColors(
     filteredProducts,
@@ -177,7 +171,6 @@ function filterProducts(userProfile, products) {
 
   console.log("final products to send:", filteredProducts.length);
 
-  // אם נשארו פחות מ-5 מוצרים, נחזיר הודעה כדי שהלקוח יוכל להסביר זאת למשתמש.
   return {
     products: filteredProducts,
     message:
